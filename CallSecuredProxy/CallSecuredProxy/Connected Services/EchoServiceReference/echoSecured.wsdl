@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ax2608="http://echo.services.core.carbon.wso2.org/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ns="http://echo.services.core.carbon.wso2.org" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://echo.services.core.carbon.wso2.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>echo</wsdl:documentation>
+  <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="UTOverTransport">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient" />
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="http://echo.services.core.carbon.wso2.org/xsd">
+      <xs:complexType name="SimpleBean">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="a_r" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="b_r" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="c" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ax2609="http://echo.services.core.carbon.wso2.org/xsd" attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="http://echo.services.core.carbon.wso2.org">
+      <xs:import namespace="http://echo.services.core.carbon.wso2.org/xsd" />
+      <xs:element name="throwAxisFault">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="throwAxisFaultResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="echoStringArrays">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="a" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="b" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="c" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="echoStringArraysResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax2609:SimpleBean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="echoOMElement">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="omEle" nillable="true" type="xs:anyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="echoOMElementResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:anyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="echoInt">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="in" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="echoIntResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="echoString">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="in" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="echoStringResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="echoOMElementRequest">
+    <wsdl:part name="parameters" element="ns:echoOMElement" />
+  </wsdl:message>
+  <wsdl:message name="echoOMElementResponse">
+    <wsdl:part name="parameters" element="ns:echoOMElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="echoStringRequest">
+    <wsdl:part name="parameters" element="ns:echoString" />
+  </wsdl:message>
+  <wsdl:message name="echoStringResponse">
+    <wsdl:part name="parameters" element="ns:echoStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="echoStringArraysRequest">
+    <wsdl:part name="parameters" element="ns:echoStringArrays" />
+  </wsdl:message>
+  <wsdl:message name="echoStringArraysResponse">
+    <wsdl:part name="parameters" element="ns:echoStringArraysResponse" />
+  </wsdl:message>
+  <wsdl:message name="throwAxisFaultRequest">
+    <wsdl:part name="parameters" element="ns:throwAxisFault" />
+  </wsdl:message>
+  <wsdl:message name="throwAxisFaultResponse">
+    <wsdl:part name="parameters" element="ns:throwAxisFaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="echoIntRequest">
+    <wsdl:part name="parameters" element="ns:echoInt" />
+  </wsdl:message>
+  <wsdl:message name="echoIntResponse">
+    <wsdl:part name="parameters" element="ns:echoIntResponse" />
+  </wsdl:message>
+  <wsdl:portType xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" wsp:PolicyURIs="#UTOverTransport" name="echoSecuredPortType">
+    <wsdl:operation name="echoOMElement">
+      <wsdl:input wsaw:Action="urn:echoOMElement" message="ns:echoOMElementRequest" />
+      <wsdl:output wsaw:Action="urn:echoOMElementResponse" message="ns:echoOMElementResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="echoString">
+      <wsdl:input wsaw:Action="urn:echoString" message="ns:echoStringRequest" />
+      <wsdl:output wsaw:Action="urn:echoStringResponse" message="ns:echoStringResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="echoStringArrays">
+      <wsdl:input wsaw:Action="urn:echoStringArrays" message="ns:echoStringArraysRequest" />
+      <wsdl:output wsaw:Action="urn:echoStringArraysResponse" message="ns:echoStringArraysResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="throwAxisFault">
+      <wsdl:input wsaw:Action="urn:throwAxisFault" message="ns:throwAxisFaultRequest" />
+      <wsdl:output wsaw:Action="urn:throwAxisFaultResponse" message="ns:throwAxisFaultResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="echoInt">
+      <wsdl:input wsaw:Action="urn:echoInt" message="ns:echoIntRequest" />
+      <wsdl:output wsaw:Action="urn:echoIntResponse" message="ns:echoIntResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="echoSecuredSoap11Binding" type="ns:echoSecuredPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="echoOMElement">
+      <soap:operation soapAction="urn:echoOMElement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoString">
+      <soap:operation soapAction="urn:echoString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoStringArrays">
+      <soap:operation soapAction="urn:echoStringArrays" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="throwAxisFault">
+      <soap:operation soapAction="urn:throwAxisFault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoInt">
+      <soap:operation soapAction="urn:echoInt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="echoSecuredSoap12Binding" type="ns:echoSecuredPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="echoOMElement">
+      <soap12:operation soapAction="urn:echoOMElement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoString">
+      <soap12:operation soapAction="urn:echoString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoStringArrays">
+      <soap12:operation soapAction="urn:echoStringArrays" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="throwAxisFault">
+      <soap12:operation soapAction="urn:throwAxisFault" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoInt">
+      <soap12:operation soapAction="urn:echoInt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="echoSecuredHttpBinding" type="ns:echoSecuredPortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="echoOMElement">
+      <http:operation location="echoOMElement" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoString">
+      <http:operation location="echoString" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoStringArrays">
+      <http:operation location="echoStringArrays" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="throwAxisFault">
+      <http:operation location="throwAxisFault" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echoInt">
+      <http:operation location="echoInt" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="echoSecured">
+    <wsdl:port name="echoSecuredHttpSoap11Endpoint" binding="ns:echoSecuredSoap11Binding">
+      <soap:address location="http://lahiru-ThinkPad-X1-Carbon-4th:8280/services/echoSecured.echoSecuredHttpSoap11Endpoint" />
+    </wsdl:port>
+    <wsdl:port name="echoSecuredHttpsSoap11Endpoint" binding="ns:echoSecuredSoap11Binding">
+      <soap:address location="https://lahiru-ThinkPad-X1-Carbon-4th:8243/services/echoSecured.echoSecuredHttpsSoap11Endpoint" />
+    </wsdl:port>
+    <wsdl:port name="echoSecuredHttpsSoap12Endpoint" binding="ns:echoSecuredSoap12Binding">
+      <soap12:address location="https://lahiru-ThinkPad-X1-Carbon-4th:8243/services/echoSecured.echoSecuredHttpsSoap12Endpoint" />
+    </wsdl:port>
+    <wsdl:port name="echoSecuredHttpSoap12Endpoint" binding="ns:echoSecuredSoap12Binding">
+      <soap12:address location="http://lahiru-ThinkPad-X1-Carbon-4th:8280/services/echoSecured.echoSecuredHttpSoap12Endpoint" />
+    </wsdl:port>
+    <wsdl:port name="echoSecuredHttpEndpoint" binding="ns:echoSecuredHttpBinding">
+      <http:address location="http://lahiru-ThinkPad-X1-Carbon-4th:8280/services/echoSecured.echoSecuredHttpEndpoint" />
+    </wsdl:port>
+    <wsdl:port name="echoSecuredHttpsEndpoint" binding="ns:echoSecuredHttpBinding">
+      <http:address location="https://lahiru-ThinkPad-X1-Carbon-4th:8243/services/echoSecured.echoSecuredHttpsEndpoint" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
