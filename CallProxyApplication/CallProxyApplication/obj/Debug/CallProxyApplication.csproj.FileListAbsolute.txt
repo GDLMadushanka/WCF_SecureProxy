@@ -1,0 +1,10 @@
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\bin\Debug\CallProxyApplication.exe.config
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\bin\Debug\CallProxyApplication.exe
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\bin\Debug\CallProxyApplication.pdb
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\obj\Debug\CallProxyApplication.csprojAssemblyReference.cache
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\obj\Debug\CallProxyApplication.CallWebServiceForm.resources
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\obj\Debug\CallProxyApplication.Properties.Resources.resources
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\obj\Debug\CallProxyApplication.csproj.GenerateResource.cache
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\obj\Debug\CallProxyApplication.csproj.CoreCompileInputs.cache
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\obj\Debug\CallProxyApplication.exe
+C:\Users\MSI LEOPARD\source\repos\CallProxyApplication\CallProxyApplication\obj\Debug\CallProxyApplication.pdb
